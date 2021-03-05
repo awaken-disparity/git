@@ -57,9 +57,8 @@ void prepare_repo_settings(struct repository *r)
 	if (git_env_bool(GIT_TEST_MULTI_PACK_INDEX, 0))
 		r->settings.core_multi_pack_index = 1;
 
-	/*
-	 * Non-boolean config
-	 */
+	r->settings.fsmonitor = NULL; /* lazy loaded */
+
 	if (!repo_config_get_int(r, "index.version", &value))
 		r->settings.index_version = value;
 
